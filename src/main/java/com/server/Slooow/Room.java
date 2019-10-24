@@ -42,7 +42,6 @@ public class Room {
 		this.game = game;
 		this.mapName = mapName;
 		this.myType = myType;
-		jugadoresEnSala.putIfAbsent(owner.getSession(), owner);	
 	}
 
 	public void startRoom(){

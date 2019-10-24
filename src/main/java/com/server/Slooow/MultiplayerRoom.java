@@ -57,6 +57,7 @@ public class MultiplayerRoom extends Room {
 		for (int i = 0; i < MAXNUMPLAYERS; i++) {
 			deletePlayer[i] = false;
 		}
+		anadirJugador(owner);
 	}
 
 	/*
@@ -511,6 +512,7 @@ public class MultiplayerRoom extends Room {
 			
 			quitarJugador(playerArray[i]);
 		}
+		System.out.println("Borrando sala: " + name);
 		game.deleteRoom(this);
 	}
 
@@ -543,15 +545,15 @@ public class MultiplayerRoom extends Room {
 		playerReadyLock.lock();
 		if (!player.isReady) {
 			if (readyPlayers.incrementAndGet() == MAXNUMPLAYERS) {
-				player.myRoom = this;
 				hasStart = true;
-				player.isReady = true;
 				map = new Map(2000, mapName);
 				createMap();
 				sendMap();
 				tick();
 			}
-		}
+			player.myRoom = this;
+			player.isReady = true;
+		} 
 
 		playerReadyLock.unlock();
 

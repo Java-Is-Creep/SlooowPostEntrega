@@ -246,6 +246,10 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 
 		case "ENTERLOBBYMULTI":
 			jug = game.bucarJugadorConectado(newSession);
+			System.out.println("Antes de crear la sala");
+			for(MultiplayerRoom aux : game.multiPlayerRoomMap.values()){
+				System.out.println("Salas que hay: "+aux.name);
+			}
 			game.createMultiRoom(post.roomName, jug, post.mapName);
 			System.out.println("Sala creada");
 			break;
